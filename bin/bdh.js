@@ -1,5 +1,14 @@
 #!/usr/bin/env node
 
+// 抑制 punycode 弃用警告
+process.removeAllListeners('warning');
+process.on('warning', warning => {
+  if (warning.code === 'DEP0040') {
+    return;
+  }
+  console.warn(warning.name, warning.message);
+});
+
 const yargs = require('yargs');
 const updateNotifier = require('update-notifier');
 const pkg = require('../package.json');
