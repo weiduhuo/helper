@@ -34,7 +34,7 @@ const { argv } = yargs
   .command('hokan <site>', '补完某站的所有番剧数据', {}, hokan)
   .example('bdh hokan iqiyi', '补完 iqiyi 的所有番剧数据')
   .command('end', '补充所有 end 字段为空的番剧', {}, end)
-  .example('bdh end', '补充所有 end 字段为空的番剧')
+  .example('bdh end', '补充所有 end 字段为空的番剧，并导出所有在放送的番剧')
   .command('cleanup <site>', '清理已下架番剧', {}, cleanup)
   .example('bdh cleanup', '清理已下架番剧')
   .alias('f', 'force')
