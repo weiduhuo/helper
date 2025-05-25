@@ -63,7 +63,16 @@ const { argv } = yargs
   .example('bdh validate youtubeBeforeDefault', '基于 youtubeBeforeDefault 策略对站点数据进行核查')
   .command('hokan <site>', '补完某站的所有番剧数据', {}, hokan)
   .example('bdh hokan iqiyi', '补完 iqiyi 的所有番剧数据')
-  .command('end', '补充所有 end 字段为空的番剧', {}, end)
+  .command(
+    'end',
+    '补充所有 end 字段为空的番剧，并导出所有在放送的番剧',
+    yargs => yargs.option('offline', {
+      type: 'boolean',
+      describe: '不连接 API 进行查询',
+      default: false
+    }),
+    end
+  )
   .example('bdh end', '补充所有 end 字段为空的番剧')
   .command('cleanup <site>', '清理已下架番剧', {}, cleanup)
   .example('bdh cleanup', '清理已下架番剧')
