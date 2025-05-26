@@ -38,7 +38,16 @@ const { argv } = yargs
     ['bdh update 201610 nicovideo gamer', '更新 2016 年 10 月的番剧中，nicovideo与gamer站点的数据'],
     ['bdh update 201610 gamer*', '更新 2016 年 10 月的番剧中，gamer与gamer_hk站点的数据'],
   ])
-  .command('edit <month> [siteList..]', '交互式地编辑某月的番剧数据', {}, edit)
+  .command(
+    'edit <month> [siteList..]',
+    '交互式地编辑某月的番剧数据',
+    yargs => yargs.option('useFilter', {
+      type: 'boolean',
+      describe: '过滤不包含 siteList 内已有站点的番剧',
+      default: false,
+    }),
+    edit
+  )
   .example([
     ['bdh edit 201610', '交互式地编辑 2016 年 10 月的番剧数据的所有放送站点'],
     ['bdh edit 201610 nicovideo', '交互式地编辑 2016 年 10 月的番剧数据的nicovideo站点'],
